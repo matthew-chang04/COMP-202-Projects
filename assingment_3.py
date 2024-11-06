@@ -41,12 +41,14 @@ def string2list(string):
 def add_space(input_text):
 
     output_text = ""
+    last_index = 0
     for index in range(1,len(input_text)-2):
 
         if input_text[index - 1].lower() == input_text[index - 1] and input_text[index + 1].lower() == input_text[index + 1] and input_text[index] != input_text[index].lower():
-            replacement = input_text[:index]
+            replacement = input_text[last_index:index]
 
             output_text += (replacement + " ")
+            last_index = index
 
     return output_text
 
