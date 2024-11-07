@@ -7,7 +7,7 @@ def deep_copy(list):
         new_sublist = []
         for char in sublist:
             new_sublist.append(char)
-        new_list.append(sublist)
+        new_list.append(new_sublist)
     return new_list
 
 
@@ -15,7 +15,7 @@ def check_square(string):
     for index in range(len(string)):
         if index ** 2 == len(string):
             return index
-    return 0
+    return False
     
 def is_not_valid(string):
 
@@ -40,11 +40,11 @@ def string2list(string):
         temp_list.append(index)
     
     sublist_len = check_square(string)
-    list = [0] * sublist_len
+    list = []
 
-    for index in range(len(list)):
+    for index in range(sublist_len):
 
-        list[index] = temp_list[index * sublist_len: (index * sublist_len) + sublist_len]
+        list.append(temp_list[index * sublist_len: (index * sublist_len) + sublist_len])
 
     return list
 
@@ -53,9 +53,9 @@ def add_space(input_text):
     last_edit = 0
     string_copy = input_text
     output_text = ""
-    for index in range(1,len(input_text) -1):
+    for index in range(1,len(input_text) - 1):
 
-        if input_text[index] != input_text[index].lower() and input_text[index - 1].lower() == input_text[index - 1] and input_text[index + 1].lower() == input_text[index + 1] and input_text[index + 1] != " " and input_text[index - 1] != " ":
+        if input_text[index] <= "Z" and input_text[index - 1].lower() == input_text[index - 1] and input_text[index + 1].lower() == input_text[index + 1] and input_text[index + 1] != " " and input_text[index - 1] != " ":
             output_text = output_text + string_copy[last_edit:index] + " "
             last_edit = index
         elif index == len(input_text) - 2:
@@ -74,39 +74,30 @@ def list2string(list):
     
     return add_space(string_result)
 
+
 def horizontal_flip(list):
 
     for sublist in list:
         sublist = sublist[::-1]
 
-"""
+
 def transpose(list):
     
     new_list = deep_copy(list)
 
-    for row in range(0, len(list)):
-        for column in range(0, len(list)):
+    for row in range(len(new_list)):
+        for column in range(len(new_list)):
             list[row][column] = new_list[column][row]
 
-"""
+
 def flip_list(list):
-    list = transpose(horizontal_flip(list))
+    horizontal_flip(list)
+    transpose(list)
 
+def decipher_code(string):
 
-def transpose(list):
+    input_list = string2list(string)
+    flip_list(input_list)
+    output = list2string(input_list)
 
-    new_list = []
-    
-    for row in range(0, len(list)):
-        new_sublist = []
-        for column in range(0, len(list)):
-            new_sublist.append(list[column][row])
-        new_list.append(new_sublist)
-
-    return new_list
-
-list = [["a",'b','c'],['d','e','f'],['g','h','i']]
-
-print(transpose(list))
-
-print(list)
+    return output
