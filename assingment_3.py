@@ -1,6 +1,16 @@
 STRING_SIZE_LIMIT = 1000
 MIN_STRING_SIZE = 1
 
+def deep_copy(list):
+    new_list = []
+    for sublist in list:
+        new_sublist = []
+        for char in sublist:
+            new_sublist.append(char)
+        new_list.append(sublist)
+    return new_list
+
+
 def check_square(string):
     for index in range(len(string)):
         if index ** 2 == len(string):
@@ -9,10 +19,10 @@ def check_square(string):
     
 def is_not_valid(string):
 
-    for character in string:
-        if character.isdecimal():
+    for character in string:    
+        if character < "A" or character > "z" and character != " ":
             return True
-    
+
     return False
 
 def is_not_square(string):
@@ -27,7 +37,7 @@ def string2list(string):
         return temp_list
     
     for index in string:
-        temp_list += index
+        temp_list.append(index)
     
     sublist_len = check_square(string)
     list = [0] * sublist_len
@@ -66,11 +76,22 @@ def list2string(list):
 
 def horizontal_flip(list):
 
-    new_list = []
     for sublist in list:
-        new_list.append(sublist[::-1])
+        sublist = sublist[::-1]
 
-    return new_list
+"""
+def transpose(list):
+    
+    new_list = deep_copy(list)
+
+    for row in range(0, len(list)):
+        for column in range(0, len(list)):
+            list[row][column] = new_list[column][row]
+
+"""
+def flip_list(list):
+    list = transpose(horizontal_flip(list))
+
 
 def transpose(list):
 
@@ -84,5 +105,8 @@ def transpose(list):
 
     return new_list
 
-def flip_list(list):
-    
+list = [["a",'b','c'],['d','e','f'],['g','h','i']]
+
+print(transpose(list))
+
+print(list)
