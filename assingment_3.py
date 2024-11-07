@@ -20,7 +20,7 @@ def check_square(string):
 def is_not_valid(string):
 
     for character in string:    
-        if character < "A" or character > "z" and character != " ":
+        if not(character >= "A" and character <= "Z" or character >= "a" and character <= "z" or character == " "):
             return True
 
     return False
