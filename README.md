@@ -1,1 +1,1 @@
-Basic projects made to explore data structures and basic Python data types and computations.
+Projects made to explore basic programming standards, data structures, and computations in Python.
