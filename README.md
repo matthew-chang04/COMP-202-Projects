@@ -2,4 +2,4 @@
 <h2>Assignment 3:</h2>
 <p>Message encryption and decryption algorithm using lists and loops in Python</p>
 <h2>Assignment 4:</h2>
-<p>Functional QR code reader</p>
+<p>QR code reader (see helper, qrcode, txtdata files)</p>
